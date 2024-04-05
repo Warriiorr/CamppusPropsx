@@ -65,7 +65,7 @@ export default function SignUp() {
               <Box height={16} />
 
               <Button type="submit" variant="contained" size="large"
-              disabled={!isValid}
+              disabled={!dirty || !isValid}
               >
                 Sign Up
               </Button>
