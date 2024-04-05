@@ -19,9 +19,9 @@ export default function SignUp() {
           formikHelpers.resetForm();
         }}
         validationSchema={object({
-          username : string().required("please enter your username").min(5, "username is too short"),
+          username : string().required("please enter your username").min(5, "username is too short").matches(/^\S*$/, "Username cannot contain spaces"),
           email : string().required("please enter your email").email("Invaid email"),
-          password : string().required("please enter your password").min(6, "password is too short"),
+          password : string().required("please enter your password").min(6, "password is too short").matches(/^\S*$/, "Password cannot contain spaces"),
         })}
       >
        {({errors, isValid, touched, dirty}) => ( 
