@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
  const SideBar = () => {
   return (
-    <Box bgcolor="" flex={1} p={2} sx={{display: {sm: "none", md: "block"}}}>
+    <Box bgcolor="" flex={1} p={2} sx={{display: {sm: "flex", md: "block", xs: "none"}}}>
     <List>
     <ListItem disablePadding>
       <ListItemButton component={Link} to="/">

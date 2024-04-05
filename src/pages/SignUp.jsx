@@ -11,7 +11,7 @@ const initialValues = {
 
 export default function SignUp() {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", padding: "50px" }}>
+    <Grid sx={{ display: "flex", justifyContent: "center", padding: {xs: "10px", sm: "30px"} }}>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, formikHelpers) => {
@@ -27,7 +27,7 @@ export default function SignUp() {
        {({errors, isValid, touched, dirty}) => ( 
           <Form>
             <Box
-              sx={{ display: "flex", flexDirection: "column", width: "50vw" }}
+              sx={{ display: "flex", flexDirection: "column", width: {xs: "80vw", sm: "50vw"}, marginTop: {xs: "20px", sm: "0px"} }}
             >
               <Field
                 name="username"
@@ -73,7 +73,7 @@ export default function SignUp() {
           </Form>
          )} 
       </Formik>
-    </Box>
+    </Grid>
   );
 }
 

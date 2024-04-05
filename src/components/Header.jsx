@@ -35,7 +35,7 @@ const Header = () => {
     <AppBar position="sticky" style={{ backgroundColor: 'transparent' }}>
       <Toolbar>
           {/* {isMobile ? (  */}
-          <Grid container  sx={{ display: {md: "none", sm: "flex"}, justifyContent: "space-between", alignItems: "center"}}>
+          <Grid container  sx={{ display: {xs: "flex", sm: "flex", md: "none"}, justifyContent: "space-between", alignItems: "center", width: "100%"}}>
             <Typography sx={{ color: "#46c4bd", textDecorationLine: "none" }} component={Link} to="/">CampusProps</Typography>
 
             <IconButton
@@ -72,7 +72,8 @@ const Header = () => {
       {/*  ) : (   */}
 
         <>
-          <Grid container alignItems="center" sx={{display: {sm: "none", md: "flex"}}}>
+        <Grid container alignItems="center" sx={{display: {xs: "none", sm: "none", md: "flex"}}}>
+
             <Grid item xs={2} sx={{ color: "#46c4bd", textAlign: "center", textDecorationLine: "none" }} component={Link} to="/">
               <Typography>CampusProps</Typography>
             </Grid>
@@ -82,9 +83,10 @@ const Header = () => {
                 <Tab label="About" component={Link} to="/about" />
                 <Tab label="Contact" component={Link} to="/contact" />
                 <Tab label="FAQs" component={Link} to="/faqs" />
-                <Tab label="sign up" component={Link} to="/sign-up" />
+                <Tab label="sign up" component={Link} to="/sign-up" /> 
               </Tabs>
             </Grid>
+            
           </Grid>
           </>
 
