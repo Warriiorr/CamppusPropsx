@@ -13,6 +13,7 @@ import BottomTabNav from "./components/BottomTabNav";
 import SideBar from "./components/SideBar";
 import FAQs from "./pages/FAQs";
 import { Stack } from "@mui/material";
+import PrivateRoute from "./components/PrivateRoute";
 
 // import React from 'react'
 
@@ -27,13 +28,15 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
+           <Route element={<PrivateRoute/>}>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/booked" element={<Booked />} />
+            </Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/booked" element={<Booked />} />
       </Routes>
       </div>    
       </Stack>

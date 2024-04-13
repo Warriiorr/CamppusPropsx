@@ -1,7 +1,9 @@
-import { Button, Box, Grid, TextField } from "@mui/material";
+import { Button, Box, Grid, TextField, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { object, string } from "yup";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const initialValues = {
   username: "",
@@ -10,13 +12,58 @@ const initialValues = {
 };
 
 export default function SignUp() {
+  //via functionality now 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+
+
+
+
   return (
     <Grid sx={{ display: "flex", justifyContent: "center", padding: {xs: "10px", sm: "30px"} }}>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, formikHelpers) => {
-          console.log(values)
-          formikHelpers.resetForm();
+        onSubmit={ async (values, formikHelpers) => {
+          //real sign up functionality proper
+          setLoading(true);
+          setError("");
+
+          try {
+            // Replace the API_URL with your actual backend API URL
+            const response = await fetch('/api/auth/SignUp', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(values)
+            });
+
+          
+
+            const responseData = await response.json();
+            
+            if (responseData.success === false) {
+              setError(responseData.message || "Failed to sign up");
+            } else {
+              // Redirect to the home page upon successful signup
+              console.log(responseData)
+              navigate("/sign-in");
+            }
+          } catch (error) {
+            setError("Failed to sign up. Please try again later.");
+          } finally {
+            setLoading(false);
+            formikHelpers.resetForm();
+          }
+
+
+
+
+
+          // console.log(values)
+          // formikHelpers.resetForm();
         }}
         validationSchema={object({
           username : string().required("please enter your username").min(5, "username is too short").matches(/^\S*$/, "Username cannot contain spaces"),
@@ -65,11 +112,17 @@ export default function SignUp() {
               <Box height={16} />
 
               <Button type="submit" variant="contained" size="large"
-              disabled={!dirty || !isValid}
+              disabled={!dirty || !isValid || loading}
               >
-                Sign Up
+              {loading ? "Loading..." : "Sign Up"}
               </Button>
+
+              {error && <Box sx={{color: "red", marginTop: "10px"}}>{error}</Box>}
+
             </Box>
+            <Link to={"/sign-in"}>
+              <Typography sx={{marginTop: "10px"}}>Have an Account? Sign In</Typography>
+          </Link>
           </Form>
          )} 
       </Formik>
