@@ -25,13 +25,13 @@ const BottomTabNav = () => {
   return (
     <Box sx={{ display: { sx: "flex", sm: "none", md: "none" } }}>
       <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, width: "100%" }}
+        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, width: "100%", }}
         elevation={3}
       >
         <BottomNavigation
           sx={{
             "& .Mui-selected .MuiBottomNavigationAction-icon": {
-              color: "#46c4bd", // Color for selected item
+              color: "#46c4bd", 
             },
           }}
           value={value}
@@ -67,7 +67,7 @@ const BottomTabNav = () => {
             onClick={() => navigate("/Profile")}
             icon={
               currentUser && currentUser.profileimage ? (
-                <Avatar alt="profile" src={currentUser.profileimage} sx={{ width: 30, height: 30 }}/>
+                <img alt="profile" src={currentUser.profileimage} style={{ width: 30, height: 30, borderRadius: 40 }}/>
               ) : (
                 <AccountCircleRoundedIcon />
               )

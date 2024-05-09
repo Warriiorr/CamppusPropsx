@@ -1,8 +1,10 @@
+import { Box } from '@mui/material'
 import React from 'react'
-import './home.style.css';
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <Box bgcolor={'background.default'} color={'text.primary'}>
+    Home
+    </Box>
   )
 }

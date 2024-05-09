@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Grid, IconButton, ListItem, List, ListItemText, Drawer, Typography, Tabs, Tab, Box } from '@mui/material';
@@ -32,11 +33,16 @@ const Header = () => {
 
     <header>
     
-    <AppBar position="sticky" style={{ backgroundColor: 'transparent' }}>
+    <AppBar position='fixed'  style={{ backgroundColor: 'transparent' }}>
+    <Box >
+
       <Toolbar>
           {/* {isMobile ? (  */}
           <Grid container  sx={{ display: {xs: "flex", sm: "flex", md: "none"}, justifyContent: "space-between", alignItems: "center", width: "100%"}}>
-            <Typography sx={{ color: "#46c4bd", textDecorationLine: "none" }} component={Link} to="/">CampusProps</Typography>
+          
+          <Link to="/" style={{ textDecoration: "none", color: "#46c4bd" }}>
+          <Typography variant='h4' >CampusProps</Typography>
+          </Link>
 
             <IconButton
               edge="end"
@@ -75,7 +81,7 @@ const Header = () => {
         <Grid container alignItems="center" sx={{display: {xs: "none", sm: "none", md: "flex"}}}>
 
             <Grid item xs={2} sx={{ color: "#46c4bd", textAlign: "center", textDecorationLine: "none" }} component={Link} to="/">
-              <Typography>CampusProps</Typography>
+              <Typography variant='h3'>CampusProps</Typography>
             </Grid>
 
             <Grid item xs={5} sx={{ marginLeft: 'auto', color: "#46c4bd" }}>
@@ -92,6 +98,7 @@ const Header = () => {
 
        {/* )} */}
       </Toolbar>
+      </Box>
     </AppBar>
     </header>
 

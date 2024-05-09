@@ -40,7 +40,8 @@ export default function OAuth() {
 
   return (
     <Button
-      sx={{ backgroundColor: "#FF474C", marginTop: "10px" }}
+      sx={{ backgroundColor: "#FF474C", marginTop: "10px", "&:hover": {
+        backgroundColor: "#FF474Ced" }}}
       variant="contained"
       size="large"
       type="button"

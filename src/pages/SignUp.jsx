@@ -4,6 +4,9 @@ import { object, string } from "yup";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import OAuth from "../components/OAuth";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 const initialValues = {
   username: "",
@@ -12,43 +15,43 @@ const initialValues = {
 };
 
 export default function SignUp() {
-  //via functionality now 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-
-
-
-
+  //via functionality now
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   return (
-    <Grid sx={{ display: "flex", justifyContent: "center", padding: {xs: "10px", sm: "30px"} }}>
+    <Grid
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        padding: { xs: "10px", sm: "30px" },
+      }}
+    >
       <Formik
         initialValues={initialValues}
-        onSubmit={ async (values, formikHelpers) => {
+        onSubmit={async (values, formikHelpers) => {
           //real sign up functionality proper
           setLoading(true);
           setError("");
 
           try {
             // Replace the API_URL with your actual backend API URL
-            const response = await fetch('/api/auth/SignUp', {
+            const response = await fetch("/api/auth/SignUp", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
-              body: JSON.stringify(values)
+              body: JSON.stringify(values),
             });
 
-          
-
             const responseData = await response.json();
-            
+
             if (responseData.success === false) {
               setError(responseData.message || "Failed to sign up");
             } else {
               // Redirect to the home page upon successful signup
-              console.log(responseData)
+              console.log(responseData);
               navigate("/sign-in");
             }
           } catch (error) {
@@ -58,23 +61,32 @@ export default function SignUp() {
             formikHelpers.resetForm();
           }
 
-
-
-
-
           // console.log(values)
           // formikHelpers.resetForm();
         }}
         validationSchema={object({
-          username : string().required("please enter your username").min(5, "username is too short").matches(/^\S*$/, "Username cannot contain spaces"),
-          email : string().required("please enter your email").email("Invaid email"),
-          password : string().required("please enter your password").min(6, "password is too short").matches(/^\S*$/, "Password cannot contain spaces"),
+          username: string()
+            .required("please enter your username")
+            .min(5, "username is too short")
+            .matches(/^\S*$/, "Username cannot contain spaces"),
+          email: string()
+            .required("please enter your email")
+            .email("Invaid email"),
+          password: string()
+            .required("please enter your password")
+            .min(6, "password is too short")
+            .matches(/^\S*$/, "Password cannot contain spaces"),
         })}
       >
-       {({errors, isValid, touched, dirty}) => ( 
+        {({ errors, isValid, touched, dirty }) => (
           <Form>
             <Box
-              sx={{ display: "flex", flexDirection: "column", width: {xs: "80vw", sm: "50vw"}, marginTop: {xs: "20px", sm: "0px"} }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: { xs: "80vw", sm: "50vw" },
+                marginTop: { xs: "20px", sm: "0px" },
+              }}
             >
               <Field
                 name="username"
@@ -111,23 +123,34 @@ export default function SignUp() {
               />
               <Box height={16} />
 
-              <Button type="submit" variant="contained" size="large"
-              disabled={!dirty || !isValid || loading}
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                disabled={!dirty || !isValid || loading}
               >
-              {loading ? "Loading..." : "Sign Up"}
+                {loading ? "Loading..." : "Sign Up"}
               </Button>
 
-              {error && <Box sx={{color: "red", marginTop: "10px"}}>{error}</Box>}
+              <Divider sx={{ marginTop: "10px", marginBottom: "10px" }}>
+               {/* <Chip label="OR" size="small" /> */}
+               OR
+              </Divider>
 
+              <OAuth />
+
+              {error && (
+                <Box sx={{ color: "red", marginTop: "10px" }}>{error}</Box>
+              )}
             </Box>
             <Link to={"/sign-in"}>
-              <Typography sx={{marginTop: "10px"}}>Have an Account? Sign In</Typography>
-          </Link>
+              <Typography sx={{ marginTop: "10px" }}>
+                Have an Account? Sign In
+              </Typography>
+            </Link>
           </Form>
-         )} 
+        )}
       </Formik>
     </Grid>
   );
 }
-
-

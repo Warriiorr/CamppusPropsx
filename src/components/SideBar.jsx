@@ -1,6 +1,7 @@
 import {
   Box,
   List,
+  Grid,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -19,7 +20,8 @@ import Avatar from "@mui/material/Avatar";
 const SideBar = () => {
   //initiallize useSlelctor
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
+  // console.log(currentUser);
+  // console.log(currentUser.profileimage);
 
   const location = useLocation();
 
@@ -29,100 +31,114 @@ const SideBar = () => {
 
   return (
     <Box
-      bgcolor=""
+      bgcolor="background.default"
+      color="text.primary"
       flex={1}
       p={2}
-      sx={{ display: { sm: "flex", md: "block", xs: "none" } }}
+      sx={{
+        display: { sm: "flex", md: "block", xs: "none" },
+        paddingTop: "50px",
+      }}
     >
-      <List>
-        <ListItem>
-          <ListItemButton
-            component={Link}
-            to="/"
-            selected={isActive("/")}
-            sx={{ backgroundColor: isActive("/") ? "#46c4bd" : "transparent" }}
-          >
-            <ListItemIcon>
-              <HomeRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
+      <Box position={"fixed"}>
+        <List>
+          <ListItem>
+            <ListItemButton
+              component={Link}
+              to="/"
+              selected={isActive("/")}
+              sx={{
+                backgroundColor: isActive("/") ? "#46c4bd" : "transparent",
+              }}
+            >
+              <ListItemIcon>
+                <HomeRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
 
-        <ListItem>
-          <ListItemButton
-            component={Link}
-            to="/search"
-            selected={isActive("/search")}
-            sx={{
-              backgroundColor: isActive("/search") ? "#46c4bd" : "transparent",
-            }}
-          >
-            <ListItemIcon>
-              <SearchRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Search" />
-          </ListItemButton>
-        </ListItem>
+          <ListItem>
+            <ListItemButton
+              component={Link}
+              to="/search"
+              selected={isActive("/search")}
+              sx={{
+                backgroundColor: isActive("/search")
+                  ? "#46c4bd"
+                  : "transparent",
+              }}
+            >
+              <ListItemIcon>
+                <SearchRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Search" />
+            </ListItemButton>
+          </ListItem>
 
-        <ListItem>
-          <ListItemButton
-            component={Link}
-            to="/favorites"
-            selected={isActive("/favorites")}
-            sx={{
-              backgroundColor: isActive("/favorites")
-                ? "#46c4bd"
-                : "transparent",
-            }}
-          >
-            <ListItemIcon>
-              <FavoriteIcon />
-            </ListItemIcon>
-            <ListItemText primary="Favorites" />
-          </ListItemButton>
-        </ListItem>
+          <ListItem>
+            <ListItemButton
+              component={Link}
+              to="/favorites"
+              selected={isActive("/favorites")}
+              sx={{
+                backgroundColor: isActive("/favorites")
+                  ? "#46c4bd"
+                  : "transparent",
+              }}
+            >
+              <ListItemIcon>
+                <FavoriteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Favorites" />
+            </ListItemButton>
+          </ListItem>
 
-        <ListItem>
-          <ListItemButton
-            component={Link}
-            to="/profile"
-            selected={isActive("/profile")}
-            sx={{
-              backgroundColor: isActive("/profile") ? "#46c4bd" : "transparent",
-            }}
-          >
-            <ListItemIcon>
-              {currentUser && currentUser.profileimage ? (
-                <Avatar
-                  alt="Profile"
-                  src={currentUser.profileimage}
-                  sx={{ width: 30, height: 30 }}
-                />
-              ) : (
-                <AccountCircleRoundedIcon />
-              )}
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-          </ListItemButton>
-        </ListItem>
+          <ListItem>
+            <ListItemButton
+              component={Link}
+              to="/profile"
+              selected={isActive("/profile")}
+              sx={{
+                backgroundColor: isActive("/profile")
+                  ? "#46c4bd"
+                  : "transparent",
+              }}
+            >
+              <ListItemIcon>
+                {currentUser && currentUser.profileimage ? (
+                  <img
+                    alt="profile"
+                    src={currentUser.profileimage}
+                    style={{ width: 30, height: 30, borderRadius: 40 }}
+                  />
+                ) : (
+                  <AccountCircleRoundedIcon />
+                )}
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItemButton>
+          </ListItem>
 
-        <ListItem>
-          <ListItemButton
-            component={Link}
-            to="/booked"
-            selected={isActive("/booked")}
-            sx={{
-              backgroundColor: isActive("/booked") ? "#46c4bd" : "transparent",
-            }}
-          >
-            <ListItemIcon>
-              <BookmarksRoundedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Booked" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+          <ListItem>
+            <ListItemButton
+              component={Link}
+              to="/booked"
+              selected={isActive("/booked")}
+              sx={{
+                backgroundColor: isActive("/booked")
+                  ? "#46c4bd"
+                  : "transparent",
+              }}
+            >
+              <ListItemIcon>
+                <BookmarksRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Booked" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
     </Box>
   );
 };

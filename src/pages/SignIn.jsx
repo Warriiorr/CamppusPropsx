@@ -3,10 +3,11 @@ import { Field, Form, Formik } from "formik";
 import { object, string } from "yup";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import Divider from "@mui/material/Divider";
+
 
 
 const initialValues = {
@@ -120,6 +121,10 @@ export default function SignIn() {
               {loading ? "Loading..." : "Sign In"}
               </Button>
 
+              <Divider sx={{ marginTop: "10px", marginBottom: "10px" }}>
+               {/* <Chip label="OR" size="small" /> */}
+               OR
+              </Divider>
               <OAuth/>
 
               {error && <Box sx={{color: "red", marginTop: "10px"}}>{error}</Box>}

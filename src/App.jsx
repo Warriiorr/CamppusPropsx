@@ -5,6 +5,7 @@ import Profile from "./pages/Profile"
 import Search from "./pages/Search"
 import Favorites from "./pages/Favorites"
 import SignUp from "./pages/SignUp";
+import PostLodge from "./pages/PostLodge";
 import Booked from "./pages/Booked";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -32,6 +33,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/booked" element={<Booked />} />
+              <Route path="/postLodge" element={<PostLodge />} />
             </Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
