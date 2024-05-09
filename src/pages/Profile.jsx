@@ -23,9 +23,6 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
-
-
-
 export default function Profile() {
   const dispatch = useDispatch();
 
@@ -35,6 +32,10 @@ export default function Profile() {
   const fileRef = useRef(null);
 
   const [updateSuccess, setUpdateSuccess] = useState(false);
+
+  const [userLodges, setUserLodges] = useState([]);
+
+  const [myLodgeError, setMyLodgeError] = useState(false);
 
   //iniyal values for the form
   const initialValues = {
@@ -88,13 +89,11 @@ export default function Profile() {
     );
   };
 
-
-
-   //handle signout
-   const handleSignout = async() => {
+  //handle signout
+  const handleSignout = async () => {
     try {
       dispatch(signOutStart());
-      const res = await fetch('/api/auth/signout');
+      const res = await fetch("/api/auth/signout");
       const responseData = await res.json();
       if (responseData.success === false) {
         dispatch(signOutFailure(responseData.message));
@@ -102,10 +101,27 @@ export default function Profile() {
       }
       dispatch(signOutSuccess(responseData));
     } catch (error) {
-      dispatch(signOutFailure(error.message))
-      
+      dispatch(signOutFailure(error.message));
     }
-  }
+  };
+
+  const handleMyLodges = async () => {
+    try {
+      setMyLodgeError(false);
+
+      const res = await fetch(`/api/user/agentLodges/${currentUser._id}`);
+      const responseData = await res.json();
+      if (responseData.success === false) {
+        setMyLodgeError(responseData);
+        return;
+      } else {
+        console.log(responseData);
+        setUserLodges(responseData);
+      }
+    } catch (error) {
+      setMyLodgeError(true);
+    }
+  };
 
   return (
     <Grid
@@ -168,7 +184,6 @@ export default function Profile() {
 
       <Formik
         initialValues={initialValues}
-
         //Submitting the form
         onSubmit={async (values, formikHelpers) => {
           setLoaading(true);
@@ -206,7 +221,6 @@ export default function Profile() {
             formikHelpers.resetForm();
           }
         }}
-
         //Validation using the yup object and string
         validationSchema={object({
           username: string()
@@ -221,7 +235,6 @@ export default function Profile() {
             .min(6, "password is too short")
             .matches(/^\S*$/, "Password cannot contain spaces"),
         })}
-        
       >
         {({ errors, isValid, touched, dirty, setFieldValue }) => (
           <Form
@@ -291,30 +304,31 @@ export default function Profile() {
                 type="submit"
                 variant="contained"
                 size="large"
-                disabled={!dirty || !isValid || loading}
+                disabled={!dirty || !isValid || loaading}
               >
-                {loading ? "Loading..." : "Update Profile"}
+                {loaading ? "Loading..." : "Update Profile"}
               </Button>
 
               {currentUser.role === "Agent" && (
-                <Grid sx={{display: "flex", justifyContent: "space-between"}}>
-                <Link to="/PostLodge"> 
-                  <Button
-                    variant="contained"
-                    size="large"
-                    sx={{
-                      marginTop: "10px",
-                      backgroundColor: "#46c4bd",
-                      "&:hover": {
+                <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Link to="/PostLodge">
+                    <Button
+                      variant="contained"
+                      size="large"
+                      sx={{
+                        marginTop: "10px",
                         backgroundColor: "#46c4bd",
-                      },
-                    }}
-                  >
-                    post lodge
-                  </Button>
-                </Link>
+                        "&:hover": {
+                          backgroundColor: "#46c4bd",
+                        },
+                      }}
+                    >
+                      post lodge
+                    </Button>
+                  </Link>
 
                   <Button
+                    onClick={handleMyLodges}
                     variant="contained"
                     size="large"
                     sx={{
@@ -327,6 +341,9 @@ export default function Profile() {
                   >
                     my lodges
                   </Button>
+                  <Typography sx={{ color: "#FF474Ced", marginTop: "10px" }}>
+                    {myLodgeError ? "Error showing lodges!" : ""}
+                  </Typography>
                 </Grid>
               )}
 
@@ -352,6 +369,33 @@ export default function Profile() {
                 <Typography sx={{ color: "#46c4bd", marginTop: "10px" }}>
                   {updateSuccess ? "Successfully updated profile!" : ""}
                 </Typography>
+                {userLodges &&
+                  userLodges.length > 0 &&
+                  userLodges.map((lodge) => (
+                    <Grid
+                      key={lodge._id}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flexWrap: "wrap",
+                        padding: 1,
+                        
+                      }}
+                    >
+                      <Link to={`/singleLodge/${lodge._id}`} style={{display:"flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                        <img
+                          style={{
+                            height: "70px",
+                            width: "70px",
+                            margin: "5px",
+                          }}
+                          src={lodge.lodgeImages[1]}
+                          alt={`First Lodge Image of ${lodge._id}`}
+                        />
+                        <Typography>{lodge.title}</Typography>
+                      </Link>
+                    </Grid>
+                  ))}
               </Box>
             </Box>
           </Form>
