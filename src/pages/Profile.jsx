@@ -370,19 +370,33 @@ export default function Profile() {
                   {updateSuccess ? "Successfully updated profile!" : ""}
                 </Typography>
                 {userLodges &&
-                  userLodges.length > 0 &&
-                  userLodges.map((lodge) => (
+                  userLodges.length > 0 && 
+                  <Grid>
+                  <Typography textAlign={"center"} sx={{marginTop: 5}}>Your Lodges</Typography>
+
+                  {userLodges.map((lodge) => (
+
+                    <Grid>
                     <Grid
                       key={lodge._id}
                       sx={{
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "row",
                         flexWrap: "wrap",
                         padding: 1,
-                        
+                        justifyContent: "space-between",
                       }}
                     >
-                      <Link to={`/singleLodge/${lodge._id}`} style={{display:"flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                      <Link
+                        to={`/singleLodge/${lodge._id}`}
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          textDecoration: "none",
+                          gap: 5,
+                        }}
+                      >
                         <img
                           style={{
                             height: "70px",
@@ -392,10 +406,28 @@ export default function Profile() {
                           src={lodge.lodgeImages[1]}
                           alt={`First Lodge Image of ${lodge._id}`}
                         />
-                        <Typography>{lodge.title}</Typography>
+                        <div>
+                          <Typography
+                            sx={{
+                              color: "white",
+                              width: "220px",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {lodge.title}
+                          </Typography>
+                        </div>
                       </Link>
+                      <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                        <Button sx={{ color: "red" }}>delete</Button>
+                        <Button>edit</Button>
+                      </Grid>
+                    </Grid>
                     </Grid>
                   ))}
+                  </Grid>}
               </Box>
             </Box>
           </Form>

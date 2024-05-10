@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <Box bgcolor={'background.default'} color={'text.primary'}>
+    <Box  color={'text.primary'}>
     Home
     </Box>
   )

@@ -33,7 +33,7 @@ const Header = () => {
 
     <header>
     
-    <AppBar position='fixed'  style={{ backgroundColor: 'transparent' }}>
+    <AppBar position='fixed'  style={{ backgroundColor: '' }}>
     <Box >
 
       <Toolbar>
