@@ -1,7 +1,10 @@
-import React from 'react'
+import { Grid, Typography } from "@mui/material";
+import React from "react";
 
 export default function About() {
   return (
-    <div>About</div>
-  )
+    <Grid sx={{ marginTop: 10 }}>
+      <Typography>About</Typography>
+    </Grid>
+  );
 }

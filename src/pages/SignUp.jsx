@@ -26,6 +26,7 @@ export default function SignUp() {
         display: "flex",
         justifyContent: "center",
         padding: { xs: "10px", sm: "30px" },
+         marginTop: 10, marginBottom: 5
       }}
     >
       <Formik

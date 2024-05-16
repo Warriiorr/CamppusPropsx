@@ -15,6 +15,7 @@ import SideBar from "./components/SideBar";
 import FAQs from "./pages/FAQs";
 import { Stack } from "@mui/material";
 import PrivateRoute from "./components/PrivateRoute";
+import LodgePage from "./pages/LodgePage";
 
 // import React from 'react'
 
@@ -23,12 +24,13 @@ const App = () => {
     <BrowserRouter>
     <Header />
     <Stack direction={"row"} justifyContent={"space-between"}>
-    <SideBar />
+    <SideBar/>
         <div style={{ flex: 4 }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/lodgePage/:lodgeId" element={<LodgePage />} />
            <Route element={<PrivateRoute/>}>
               <Route path="/profile" element={<Profile />} />
               <Route path="/favorites" element={<Favorites />} />

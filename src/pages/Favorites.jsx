@@ -1,9 +1,11 @@
+import { Grid, Typography } from '@mui/material'
 import React from 'react'
 
 function Favorites() {
   return (
-    <div>
-Favorites</div>
+    <Grid sx={{ marginTop: 10 }}>
+      <Typography>Favorites</Typography>
+    </Grid>
   )
 }
 

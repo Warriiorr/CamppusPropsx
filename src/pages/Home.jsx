@@ -1,10 +1,10 @@
-import { Box } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 
 export default function Home() {
   return (
-    <Box  color={'text.primary'}>
-    Home
-    </Box>
+    <Grid sx={{ marginTop: 10 }}>
+      <Typography>Home</Typography>
+    </Grid>
   )
 }

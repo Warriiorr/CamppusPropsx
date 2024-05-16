@@ -28,7 +28,7 @@ export default function SignIn() {
 
 
   return (
-    <Grid sx={{ display: "flex", justifyContent: "center", padding: {xs: "10px", sm: "30px"} }}>
+    <Grid sx={{ display: "flex", justifyContent: "center", padding: {xs: "10px", sm: "30px"}, marginTop: 10, marginBottom: 5}}>
       <Formik
         initialValues={initialValues}
         onSubmit={ async (values, formikHelpers) => {

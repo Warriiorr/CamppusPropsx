@@ -129,6 +129,8 @@ export default function Profile() {
         display: "flex",
         flexDirection: "column",
         padding: { xs: "10px", sm: "30px" },
+        marginTop: 10,
+        marginBottom: 5
       }}
     >
       <Grid
@@ -388,7 +390,7 @@ export default function Profile() {
                       }}
                     >
                       <Link
-                        to={`/singleLodge/${lodge._id}`}
+                        to={`/LodgePage/${lodge._id}`}
                         style={{
                           display: "flex",
                           flexDirection: "row",

@@ -36,6 +36,7 @@ const SideBar = () => {
       flex={1}
       p={2}
       sx={{
+        // display: "none",
         display: { sm: "flex", md: "block", xs: "none" },
         paddingTop: "50px",
       }}
