@@ -33,12 +33,13 @@ const SideBar = () => {
     <Box
       bgcolor="background.default"
       color="text.primary"
-      flex={1}
+      flex={0.5}
       p={2}
       sx={{
         // display: "none",
         display: { sm: "flex", md: "block", xs: "none" },
         paddingTop: "50px",
+        zIndex: 5
       }}
     >
       <Box position={"fixed"}>
