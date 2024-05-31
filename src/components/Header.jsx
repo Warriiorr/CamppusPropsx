@@ -33,7 +33,7 @@ const Header = () => {
 
     <header>
     
-    <AppBar position='fixed'  style={{ backgroundColor: '' }}>
+    <AppBar position='fixed'  style={{ backgroundColor: "rgba(0, 0, 0, 0.92)" }}>
     <Box >
 
       <Toolbar>

@@ -139,7 +139,7 @@ function PostLodge() {
             );
           } else {
             console.log(responseData);
-            navigate(`/singleLodge/${responseData._id}`);
+            navigate(`/LodgePage/${responseData._id}`);
           }
         } catch (error) {
           setError("Expired token; Login required!");
@@ -153,7 +153,8 @@ function PostLodge() {
       validationSchema={object({
         title: string()
           .required("please enter your lodge title")
-          .min(10, "title is too short"),
+          .min(20, "title is too short")
+          .max(100, "title is too long"),
         leaseTerms: string().required("please select Brief"),
         type: string().required("please select lodge Type"),
         location: string().required("please select lodge location"),
@@ -165,8 +166,8 @@ function PostLodge() {
           .min(20, "description is too short")
           .max(100, "description is too long"),
         lodgeImages: array()
-            .min(1, "At least one image is required")
-            .nullable(),
+          .min(1, "At least one image is required")
+          .nullable(),
       })}
 
       // onSubmit={(values) => {
@@ -416,11 +417,14 @@ function PostLodge() {
                       multiple
                       style={{}}
                       error={
-                        Boolean(errors.lodgeImages) && Boolean(touched.lodgeImages)
+                        Boolean(errors.lodgeImages) &&
+                        Boolean(touched.lodgeImages)
                       }
-                      helperText={Boolean(touched.lodgeImages) && errors.lodgeImages}
+                      helperText={
+                        Boolean(touched.lodgeImages) && errors.lodgeImages
+                      }
                     />
-                    
+
                     <Button
                       disabled={uploading}
                       onClick={(e) =>
@@ -435,8 +439,6 @@ function PostLodge() {
                       {uploading ? "uploading..." : "upload"}
                     </Button>
                   </Box>
-
-                  
 
                   <Box sx={{ display: "flex", flexDirection: "column" }}>
                     {values.lodgeImages.length > 0 &&
@@ -466,14 +468,14 @@ function PostLodge() {
                         </Grid>
                       ))}
 
-                      <Typography sx={{ color: "#ff8080" }}>
-                    {imageUploadError && imageUploadError}
-                    <ErrorMessage
+                    <Typography sx={{ color: "#ff8080" }}>
+                      {imageUploadError && imageUploadError}
+                      <ErrorMessage
                         name="lodgeImages"
                         component="div"
                         style={{ color: "#ff8080" }}
                       />
-                  </Typography>
+                    </Typography>
                   </Box>
                 </Box>
               </Box>
@@ -487,8 +489,6 @@ function PostLodge() {
             >
               {loading ? "Loading..." : "Post Lodge"}
             </Button>
-
-            
 
             {error && (
               <Box sx={{ color: "red", marginTop: "10px" }}>{error}</Box>

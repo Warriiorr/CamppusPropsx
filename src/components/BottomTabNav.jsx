@@ -23,9 +23,9 @@ const BottomTabNav = () => {
   };
 
   return (
-    <Box sx={{ display: { sx: "flex", sm: "none", md: "none" } }}>
+    <Box  sx={{ display: { sx: "flex", sm: "none", md: "none"},}}>
       <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, width: "100%", }}
+        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, width: "100%", zIndex: 10}}
         elevation={3}
       >
         <BottomNavigation
@@ -33,6 +33,7 @@ const BottomTabNav = () => {
             "& .Mui-selected .MuiBottomNavigationAction-icon": {
               color: "#46c4bd", 
             },
+            
           }}
           value={value}
           onChange={handleChange}

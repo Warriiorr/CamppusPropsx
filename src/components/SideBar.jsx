@@ -34,12 +34,12 @@ const SideBar = () => {
       bgcolor="background.default"
       color="text.primary"
       flex={0.5}
-      p={2}
+      p={1}
       sx={{
         // display: "none",
         display: { sm: "flex", md: "block", xs: "none" },
         paddingTop: "50px",
-        zIndex: 5
+        zIndex: 5,
       }}
     >
       <Box position={"fixed"}>
@@ -50,10 +50,15 @@ const SideBar = () => {
               to="/"
               selected={isActive("/")}
               sx={{
-                backgroundColor: isActive("/") ? "#46c4bd" : "transparent",
+                color: isActive("/") ? "#46c4bd" : "inherit",
+                // my: "0px"
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: isActive("/") ? "#46c4bd" : "inherit",
+                }}
+              >
                 <HomeRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
@@ -66,12 +71,14 @@ const SideBar = () => {
               to="/search"
               selected={isActive("/search")}
               sx={{
-                backgroundColor: isActive("/search")
-                  ? "#46c4bd"
-                  : "transparent",
+                color: isActive("/search") ? "#46c4bd" : "inherit",
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: isActive("/search") ? "#46c4bd" : "inherit",
+                }}
+              >
                 <SearchRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Search" />
@@ -84,12 +91,14 @@ const SideBar = () => {
               to="/favorites"
               selected={isActive("/favorites")}
               sx={{
-                backgroundColor: isActive("/favorites")
-                  ? "#46c4bd"
-                  : "transparent",
+                color: isActive("/favorites") ? "#46c4bd" : "inherit",
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: isActive("/favorites") ? "#46c4bd" : "inherit",
+                }}
+              >
                 <FavoriteIcon />
               </ListItemIcon>
               <ListItemText primary="Favorites" />
@@ -102,12 +111,14 @@ const SideBar = () => {
               to="/profile"
               selected={isActive("/profile")}
               sx={{
-                backgroundColor: isActive("/profile")
-                  ? "#46c4bd"
-                  : "transparent",
+                color: isActive("/profile") ? "#46c4bd" : "inheri",
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: isActive("/profile") ? "#46c4bd" : "inherit",
+                }}
+              >
                 {currentUser && currentUser.profileimage ? (
                   <img
                     alt="profile"
@@ -128,12 +139,14 @@ const SideBar = () => {
               to="/booked"
               selected={isActive("/booked")}
               sx={{
-                backgroundColor: isActive("/booked")
-                  ? "#46c4bd"
-                  : "transparent",
+                color: isActive("/booked") ? "#46c4bd" : "inherit",
               }}
             >
-              <ListItemIcon>
+              <ListItemIcon
+                sx={{
+                  color: isActive("/booked") ? "#46c4bd" : "inherit",
+                }}
+              >
                 <BookmarksRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Booked" />
