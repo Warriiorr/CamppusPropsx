@@ -32,6 +32,7 @@ export default function Home() {
         } else {
           setLoading(false);
           setLodges(data.lodges);
+          console.log(data.lodges);
           setError(false);
         }
       } catch (error) {
@@ -88,7 +89,7 @@ export default function Home() {
       !error &&
         memoizedLodges.map((lodge) => (
           // <Grid spacing={2} container sx={{display: "flex", justifyContent: "space-between", my: "90px", flexWrap: "wrap", flexDirection: "row"}}>
-          <Grid item xs={12} sm={6} md={5.5} key={lodge._id} sx={{  marginBottom: {md: "0", xs: "15vh"}
+          <Grid item xs={12} sm={6} md={5.5} key={lodge._id} sx={{  marginBottom: {md: "0", xs: "23vh"}
         }}>
             <Card
               lodge={lodge}

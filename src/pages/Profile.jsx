@@ -115,7 +115,7 @@ export default function Profile() {
         setMyLodgeError(responseData);
         return;
       } else {
-        console.log(responseData);
+        // console.log(responseData);
         setUserLodges(responseData);
       }
     } catch (error) {
